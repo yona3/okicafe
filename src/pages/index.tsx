@@ -1,8 +1,9 @@
+import { Layout } from "@/components/common/Layout";
 import Head from "next/head";
 
 export default function Home() {
   return (
-    <>
+    <Layout>
       <Head>
         <title>Okicafe</title>
         <meta name="description" content="沖縄のカフェ検索アプリ" />
@@ -10,6 +11,6 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>Top page</div>
-    </>
+    </Layout>
   );
 }
