@@ -14,6 +14,7 @@ const shops: NextApiHandler = async (req, res) => {
   query.set("format", "json");
   query.set("service_area", "SA98"); // 沖縄
   query.set("genre", "G014"); // カフェ
+  query.set("count", "32");
   if (requestData.keyword) query.set("keyword", requestData.keyword);
 
   const response = await fetch(

@@ -1,16 +1,16 @@
 import getConfig from "next/config";
 import { useEffect, useMemo, useState } from "react";
 
-type Shop = Record<string, any>[];
-type ShopRequestQuery = {
+type Shops = Record<string, any>[];
+type ShopsRequestQuery = {
   keyword?: string;
 };
 
 // お店の取得
 
-export const useShop = (initialData: Shop, _query: ShopRequestQuery) => {
-  const [shop, setShop] = useState(initialData ?? []);
+export const useShops = (initialData = [], _query: ShopsRequestQuery) => {
   const query = useMemo(() => _query, [_query]); // メモ化しないと無限fetchする
+  const [shops, setShops] = useState(initialData);
 
   const fetchShops = async () => {
     console.log("[GET]: fetchShops");
@@ -35,7 +35,7 @@ export const useShop = (initialData: Shop, _query: ShopRequestQuery) => {
 
   const handleFetchShops = async () => {
     const data = await fetchShops();
-    setShop(data);
+    setShops(data);
   };
 
   useEffect(() => {
@@ -43,5 +43,5 @@ export const useShop = (initialData: Shop, _query: ShopRequestQuery) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query]);
 
-  return { shop };
+  return { shops };
 };
