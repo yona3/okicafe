@@ -6,8 +6,11 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 export default function Header() {
+  const { data: session } = useSession();
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -22,7 +25,15 @@ export default function Header() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Okicafe
           </Typography>
-          <Button color="inherit">Login</Button>
+          {session ? (
+            <Button color="inherit" onClick={() => signOut()}>
+              ログアウト
+            </Button>
+          ) : (
+            <Button color="inherit" onClick={() => signIn()}>
+              ログイン
+            </Button>
+          )}
         </Toolbar>
       </AppBar>
     </Box>
