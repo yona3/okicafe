@@ -9,10 +9,7 @@ type ShopsRequestQuery = {
 
 // お店の取得
 
-export const useShops = (
-  initialData = undefined,
-  _query: ShopsRequestQuery,
-) => {
+export const useShops = (initialData: Shops, _query: ShopsRequestQuery) => {
   const query = useMemo(() => _query, [_query]); // メモ化しないと無限fetchする
   const [shops, setShops] = useState<Shops>(initialData);
   const [isLoading, setIsLoading] = useState(false);
