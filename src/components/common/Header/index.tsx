@@ -5,10 +5,14 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Image from "next/image";
 import Link from "next/link";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { signIn } from "next-auth/react";
+import { IconButton } from "@mui/material";
+import PersonIcon from "@mui/icons-material/Person";
+import { useUser } from "@/hooks/useUser";
+import { grey } from "@mui/material/colors";
 
 export default function Header() {
-  const { data: session } = useSession();
+  const { user } = useUser();
 
   return (
     <Box>
@@ -39,10 +43,19 @@ export default function Header() {
               </Typography>
             </Link>
           </Box>
-          {session ? (
-            <Button color="inherit" onClick={() => signOut()}>
-              ログアウト
-            </Button>
+          {user ? (
+            <IconButton sx={{ width: "62px" }}>
+              <Link
+                href={`/${user.id}`}
+                style={{
+                  textDecoration: "none",
+                  display: "block",
+                  color: grey[800],
+                }}
+              >
+                <PersonIcon />
+              </Link>
+            </IconButton>
           ) : (
             <Button color="inherit" onClick={() => signIn()}>
               ログイン
