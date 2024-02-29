@@ -2,9 +2,9 @@ import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
 import Image from "next/image";
 import Link from "next/link";
+import { LoginButton } from "@/components/common/Header/LoginButton";
 
 export default function Header() {
   return (
@@ -36,7 +36,7 @@ export default function Header() {
               </Typography>
             </Link>
           </Box>
-          <Button color="inherit">Login</Button>
+          <LoginButton />
         </Box>
       </AppBar>
     </Box>
