@@ -1,94 +1,47 @@
 import { useShops } from "@/hooks/useShop";
-import {
-  Box,
-  Card,
-  CardContent,
-  CardMedia,
-  Grid,
-  Link,
-  Typography,
-} from "@mui/material";
-import { blue } from "@mui/material/colors";
+import { Box, CircularProgress, Grid, Typography } from "@mui/material";
 import { GetServerSideProps } from "next";
 import getConfig from "next/config";
-import { useState } from "react";
-import PlaceIcon from "@mui/icons-material/Place";
+import { useEffect, useState } from "react";
+import { useKeywordStore } from "@/states";
+import { ShopCard } from "@/components/Top/ShopCard";
+import { blue } from "@mui/material/colors";
 
 // TODO: shopの型つけたい
-// TODO: queryのglobal状態管理
+// TODO: any消す
 export const ShopList = ({ initialData }: { initialData?: any }) => {
-  const [query, setQuery] = useState({});
-  const { shops } = useShops(initialData, query);
+  const keyword = useKeywordStore((state) => state.keyword);
+  const [query, setQuery] = useState({}); // stateにしないと無限fetchする
+  const { shops, isLoading } = useShops(initialData, query);
+
+  useEffect(() => {
+    setQuery({ keyword });
+  }, [keyword]);
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <Grid container spacing={3}>
-        {shops.map((shop: any) => (
-          <Grid item xs={3} key={shop.id}>
-            <Card sx={{ minHeight: 390 }}>
-              <CardMedia
-                sx={{ height: 180 }}
-                image={shop.photo.pc.l}
-                title="green iguana"
-              />
-              <CardContent>
-                <Typography
-                  gutterBottom
-                  variant="h5"
-                  sx={{ fontSize: 18 }}
-                  component="div"
-                >
-                  {shop.name}
-                </Typography>
-                <Typography
-                  variant="body2"
-                  color="text.secondary"
-                  sx={{
-                    fontSize: 14,
-                  }}
-                >
-                  <PlaceIcon
-                    sx={{
-                      fontSize: 14,
-                      verticalAlign: "middle",
-                      mr: "2px",
-                    }}
-                  />
-                  {shop.address}
-                </Typography>
-                <Typography
-                  variant="body2"
-                  color="text.secondary"
-                  sx={{
-                    marginTop: "4px",
-                    fontSize: 14,
-                  }}
-                >
-                  {shop.catch}
-                </Typography>
-                <Typography sx={{ marginTop: "4px" }}>
-                  <Link
-                    href={shop.urls.pc}
-                    target="_blank"
-                    rel="noreferrer"
-                    sx={{
-                      fontSize: 14,
-                      color: blue[300],
-                      textDecorationColor: blue[300],
-                    }}
-                  >
-                    詳細
-                  </Link>
-                </Typography>
-              </CardContent>
-              {/* <CardActions>
-                <Button size="small">Share</Button>
-                <Button size="small">Learn More</Button>
-              </CardActions> */}
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
+    <Box>
+      {isLoading ? (
+        // loading
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <CircularProgress size={30} sx={{ color: blue[500] }} />
+        </Box>
+      ) : (
+        <Grid container spacing={3}>
+          {shops?.map((shop: any) => (
+            <Grid item xs={3} key={shop.id}>
+              <ShopCard shop={shop} />
+            </Grid>
+          ))}
+        </Grid>
+      )}
+      {/* empty */}
+      {shops?.length === 0 && !isLoading && (
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <Typography variant="body1" color="text.secondary">
+            お店が見つかりませんでした。
+          </Typography>
+        </Box>
+      )}
     </Box>
   );
 };

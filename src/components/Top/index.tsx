@@ -4,7 +4,7 @@ import { Box } from "@mui/material";
 
 export const Top = () => {
   return (
-    <Box>
+    <Box sx={{ width: "100%" }}>
       <SearchBar />
       <ShopList />
     </Box>
