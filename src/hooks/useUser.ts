@@ -20,6 +20,18 @@ export const useUser = () => {
     setUser(user);
   };
 
+  const handleDeleteUser = async () => {
+    if (!session?.user?.email) {
+      setUser(undefined);
+      return;
+    }
+
+    const { email } = session.user;
+    await fetch(`/api/user?email=${email}`, {
+      method: "DELETE",
+    });
+  };
+
   useEffect(
     () => {
       handleGetUser();
@@ -28,5 +40,5 @@ export const useUser = () => {
     [session],
   );
 
-  return { user };
+  return { user, handleDeleteUser };
 };
