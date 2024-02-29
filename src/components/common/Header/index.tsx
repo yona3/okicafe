@@ -1,30 +1,43 @@
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Header() {
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box>
       <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          ></IconButton>
-          <Image src="/Logo.png" alt="Logo" width={60} height={60} />
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Okicafe
-          </Typography>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            padding: "0 2%",
+          }}
+        >
+          <Box>
+            <Link
+              href="/"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                textDecoration: "none",
+              }}
+            >
+              <Image src="/Logo.png" alt="Logo" width={60} height={60} />
+              <Typography
+                variant="h6"
+                component="div"
+                sx={{ display: "inline-block", color: "text.primary" }}
+              >
+                Okicafe
+              </Typography>
+            </Link>
+          </Box>
           <Button color="inherit">Login</Button>
-        </Toolbar>
+        </Box>
       </AppBar>
     </Box>
   );
