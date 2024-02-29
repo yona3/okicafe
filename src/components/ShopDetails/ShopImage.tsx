@@ -15,10 +15,3 @@ export const ShopImage = ({ shop }: { shop: any }) => {
     </Box>
   );
 };
-
-{
-  /* <Typography variant="h2">{JSON.stringify(shop)}</Typography>
-      <Typography variant="h2">{shop.name}</Typography>
-      <Typography variant="h2">{shop.address}</Typography>
-      <Typography variant="h2">{shop.budget.name}</Typography> */
-}
