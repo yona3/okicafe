@@ -1,19 +1,24 @@
 import getConfig from "next/config";
 import { useEffect, useMemo, useState } from "react";
 
-type Shops = Record<string, any>[];
+type Shops = Record<string, any>[] | undefined;
 type ShopsRequestQuery = {
   keyword?: string;
 };
 
 // お店の取得
 
-export const useShops = (initialData = [], _query: ShopsRequestQuery) => {
+export const useShops = (
+  initialData = undefined,
+  _query: ShopsRequestQuery,
+) => {
   const query = useMemo(() => _query, [_query]); // メモ化しないと無限fetchする
-  const [shops, setShops] = useState(initialData);
+  const [shops, setShops] = useState<Shops>(initialData);
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchShops = async () => {
     console.log("[GET]: fetchShops");
+    setIsLoading(true);
 
     try {
       const { API_HOST } = getConfig().publicRuntimeConfig;
@@ -30,6 +35,8 @@ export const useShops = (initialData = [], _query: ShopsRequestQuery) => {
     } catch (error) {
       console.error("error fetchShops", error);
       return [];
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -43,5 +50,5 @@ export const useShops = (initialData = [], _query: ShopsRequestQuery) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query]);
 
-  return { shops };
+  return { shops, isLoading };
 };
