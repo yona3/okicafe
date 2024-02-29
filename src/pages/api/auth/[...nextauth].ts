@@ -16,6 +16,10 @@ const authOptions: AuthOptions = {
     }),
   ],
   secret: SECRET,
+  session: {
+    strategy: "jwt",
+    maxAge: 30 * 24 * 60 * 60,
+  },
   callbacks: {
     async jwt({ token, account }: any) {
       // Persist the OAuth access_token to the token right after signin
