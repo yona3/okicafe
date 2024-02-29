@@ -2,18 +2,11 @@ import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
 import Image from "next/image";
 import Link from "next/link";
-import { signIn } from "next-auth/react";
-import { IconButton } from "@mui/material";
-import PersonIcon from "@mui/icons-material/Person";
-import { useUser } from "@/hooks/useUser";
-import { grey } from "@mui/material/colors";
+import { LoginButton } from "@/components/common/Header/LoginButton";
 
 export default function Header() {
-  const { user } = useUser();
-
   return (
     <Box>
       <AppBar position="static">
@@ -43,24 +36,7 @@ export default function Header() {
               </Typography>
             </Link>
           </Box>
-          {user ? (
-            <IconButton sx={{ width: "62px" }}>
-              <Link
-                href={`/${user.id}`}
-                style={{
-                  textDecoration: "none",
-                  display: "block",
-                  color: grey[800],
-                }}
-              >
-                <PersonIcon />
-              </Link>
-            </IconButton>
-          ) : (
-            <Button color="inherit" onClick={() => signIn()}>
-              ログイン
-            </Button>
-          )}
+          <LoginButton />
         </Box>
       </AppBar>
     </Box>

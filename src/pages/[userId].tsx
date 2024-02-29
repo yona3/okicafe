@@ -1,3 +1,3 @@
-import { MyPage } from "@/components/MyPage/MyPage";
+import { MyPage } from "@/components/MyPage";
 
 export default MyPage;

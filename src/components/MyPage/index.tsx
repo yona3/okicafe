@@ -1,24 +1,15 @@
+import { UserInfo } from "@/components/MyPage/UserInfo";
 import { Layout } from "@/components/common/Layout";
-import { useUser } from "@/hooks/useUser";
-import { Button, Typography } from "@mui/material";
-import { signOut } from "next-auth/react";
-import { useRouter } from "next/router";
+import { Box, Typography } from "@mui/material";
 import { FC } from "react";
 
 export const MyPage: FC = () => {
-  const { user } = useUser();
-  const router = useRouter();
-
-  if (user === null) {
-    router.push("/");
-  }
-
   return (
     <Layout>
       <Typography variant="h5">マイページ</Typography>
-      {/* email */}
-      <Typography variant="body1">Email: {user?.email}</Typography>
-      <Button onClick={() => signOut()}>ログアウト</Button>
+      <Box sx={{ marginTop: 2 }}>
+        <UserInfo />
+      </Box>
     </Layout>
   );
 };
