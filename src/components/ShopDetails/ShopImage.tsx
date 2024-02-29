@@ -1,21 +1,24 @@
-import { Box, Typography } from "@mui/material";
-import Image from "next/image";
+/* eslint-disable @next/next/no-img-element */
+import { Box } from "@mui/material";
 
-const data: {
-  id: string;
-  name: string;
-  logo_image: string;
-} = {
-  id: "J003716022",
-  name: "ザ ジャングリラ カフェ アンド レストラン",
-  logo_image: "https://imgfp.hotp.jp/IMGH/58/71/P041905871/P041905871_238.jpg",
-};
-
-export const ShopImage = () => {
+export const ShopImage = ({ shop }: { shop: any }) => {
   return (
     <Box>
-      <Typography variant="h2">{data.id}</Typography>
-      <Typography variant="body1">{data.name}</Typography>
+      <img
+        src={shop.photo.pc.l}
+        alt="Logo"
+        style={{
+          width: "600px",
+          borderRadius: "8px",
+        }}
+      />
     </Box>
   );
 };
+
+{
+  /* <Typography variant="h2">{JSON.stringify(shop)}</Typography>
+      <Typography variant="h2">{shop.name}</Typography>
+      <Typography variant="h2">{shop.address}</Typography>
+      <Typography variant="h2">{shop.budget.name}</Typography> */
+}
