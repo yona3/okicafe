@@ -5,7 +5,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
+import Image from "next/image";
 
 export default function Header() {
   return (
@@ -19,6 +19,7 @@ export default function Header() {
             aria-label="menu"
             sx={{ mr: 2 }}
           ></IconButton>
+          <Image src="/Logo.png" alt="Logo" width={60} height={60} />
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Okicafe
           </Typography>
