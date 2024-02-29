@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 type Shops = Record<string, any>[] | undefined;
 type ShopsRequestQuery = {
   keyword?: string;
+  id?: string;
 };
 
 // お店の取得
@@ -25,6 +26,7 @@ export const useShops = (
 
       const requestQuery = new URLSearchParams();
       if (query.keyword) requestQuery.set("keyword", query.keyword);
+      if (query.id) requestQuery.set("id", query.id);
 
       const host = process.browser ? "" : API_HOST;
       const res = await fetch(`${host}/api/shops?${requestQuery.toString()}`);

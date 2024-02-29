@@ -3,26 +3,41 @@ import getConfig from "next/config";
 
 type ShopRequestQuery = {
   keyword?: string;
+  id?: string;
 };
 
 const shops: NextApiHandler = async (req, res) => {
-  const requestData = req.query as ShopRequestQuery; // TODO: 余裕があれば型ガード使う
-  const { HOTPEPPER_API_KEY } = getConfig().serverRuntimeConfig;
+  try {
+    const requestData = req.query as ShopRequestQuery; // TODO: 余裕があれば型ガード使う
+    const { HOTPEPPER_API_KEY } = getConfig().serverRuntimeConfig;
 
-  const query = new URLSearchParams();
-  query.set("key", HOTPEPPER_API_KEY);
-  query.set("format", "json");
-  query.set("service_area", "SA98"); // 沖縄
-  query.set("genre", "G014"); // カフェ
-  query.set("count", "32");
-  if (requestData.keyword) query.set("keyword", requestData.keyword);
+    const query = (() => {
+      const q = new URLSearchParams();
+      q.set("key", HOTPEPPER_API_KEY);
+      q.set("format", "json");
 
-  const response = await fetch(
-    `https://webservice.recruit.co.jp/hotpepper/gourmet/v1/?${query.toString()}`,
-  );
-  const data = await response.json();
+      if (requestData.id) {
+        q.set("id", requestData.id);
+        return q;
+      }
 
-  return res.json(data.results.shop);
+      if (requestData.keyword) q.set("keyword", requestData.keyword);
+      q.set("service_area", "SA98"); // 沖縄
+      q.set("genre", "G014"); // カフェ
+      q.set("count", "32");
+      return q;
+    })();
+
+    const response = await fetch(
+      `https://webservice.recruit.co.jp/hotpepper/gourmet/v1/?${query.toString()}`,
+    );
+    const data = await response.json();
+
+    return res.json(data.results.shop);
+  } catch (error) {
+    console.error(error);
+    return res.json([]);
+  }
 };
 
 export default shops;
