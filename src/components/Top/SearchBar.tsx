@@ -1,11 +1,11 @@
+import { useKeywordStore } from "@/states";
 import { Box, Button, Container, TextField } from "@mui/material";
-import React from "react";
+import { useState } from "react";
 
 export const SearchBar = () => {
-  const [keyword, setKeyword] = React.useState("");
-  const onSearchClick = async () => {
-    setKeyword("");
-  };
+  const [keyword, setKeyword] = useState("");
+  const setGlobalKeyword = useKeywordStore((state) => state.setKeyword);
+
   return (
     <Container
       component="main"
@@ -26,6 +26,10 @@ export const SearchBar = () => {
           alignItems: "center",
           width: "100em",
         }}
+        onSubmit={(event) => {
+          event.preventDefault();
+          setGlobalKeyword(keyword);
+        }}
       >
         <TextField
           label="キーワードを入力してください"
@@ -40,8 +44,9 @@ export const SearchBar = () => {
         <Button
           variant="contained"
           fullWidth
-          onClick={() => {
-            onSearchClick();
+          onClick={(event) => {
+            event.preventDefault();
+            setGlobalKeyword(keyword);
           }}
         >
           検索

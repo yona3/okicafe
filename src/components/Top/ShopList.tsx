@@ -11,14 +11,19 @@ import {
 import { blue } from "@mui/material/colors";
 import { GetServerSideProps } from "next";
 import getConfig from "next/config";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PlaceIcon from "@mui/icons-material/Place";
+import { useKeywordStore } from "@/states";
 
 // TODO: shopの型つけたい
-// TODO: queryのglobal状態管理
 export const ShopList = ({ initialData }: { initialData?: any }) => {
+  const keyword = useKeywordStore((state) => state.keyword);
   const [query, setQuery] = useState({});
   const { shops } = useShops(initialData, query);
+
+  useEffect(() => {
+    if (keyword) setQuery({ keyword });
+  }, [keyword]);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
