@@ -11,7 +11,7 @@ import { blue } from "@mui/material/colors";
 // TODO: any消す
 export const ShopList = ({ initialData }: { initialData?: any }) => {
   const keyword = useKeywordStore((state) => state.keyword);
-  const [query, setQuery] = useState({});
+  const [query, setQuery] = useState({}); // stateにしないと無限fetchする
   const { shops, isLoading } = useShops(initialData, query);
 
   useEffect(() => {
