@@ -8,6 +8,11 @@ import { ShopAddress } from "./ShopAdrees";
 import { ShopOpen } from "./ShopOpen";
 import { ShopWifi } from "./ShopWifi";
 import { ShopAveragePrice } from "./ShopAveragePrice";
+import { grey } from "@mui/material/colors";
+import ShopReview from "./ShopReview";
+import ShopEvaluation from "./ShopEvaluation";
+import { ShopLink } from "./ShopLink";
+import ShopAddReview from "./ShopAddReview";
 
 export const ShopDetails = () => {
   const router = useRouter();
@@ -15,19 +20,14 @@ export const ShopDetails = () => {
   const { shops, isLoading } = useShops([], query);
   const shop = shops?.[0];
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box sx={{ width: "100%", color: "#424242" }}>
       {shop && (
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
+        <Box>
           <ShopImage shop={shop} />
           <Box sx={{ marginBottom: 5 }} />
 
           <ShopName shop={shop} />
+          <ShopEvaluation />
           <Box sx={{ marginBottom: 5 }} />
 
           <ShopAddress shop={shop} />
@@ -40,6 +40,14 @@ export const ShopDetails = () => {
           <Box sx={{ marginBottom: 2 }} />
 
           <ShopAveragePrice shop={shop} />
+          <Box sx={{ marginBottom: 5 }} />
+
+          <ShopLink shop={shop} />
+          <Box sx={{ marginBottom: 8 }} />
+
+          <ShopAddReview />
+          <ShopReview />
+
           <></>
         </Box>
       )}

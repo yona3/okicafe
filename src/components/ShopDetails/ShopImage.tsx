@@ -3,7 +3,13 @@ import { Box } from "@mui/material";
 
 export const ShopImage = ({ shop }: { shop: any }) => {
   return (
-    <Box>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
       <img
         src={shop.photo.pc.l}
         alt="Logo"
