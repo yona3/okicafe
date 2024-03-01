@@ -16,6 +16,7 @@ const shops: NextApiHandler = async (req, res) => {
       q.set("key", HOTPEPPER_API_KEY);
       q.set("format", "json");
 
+      // id取得
       if (requestData.id) {
         q.set("id", requestData.id);
         return q;
@@ -24,7 +25,7 @@ const shops: NextApiHandler = async (req, res) => {
       if (requestData.keyword) q.set("keyword", requestData.keyword);
       q.set("service_area", "SA98"); // 沖縄
       q.set("genre", "G014"); // カフェ
-      q.set("count", "32");
+      q.set("count", "52");
       return q;
     })();
 

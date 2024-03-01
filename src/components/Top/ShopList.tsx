@@ -26,13 +26,20 @@ export const ShopList = ({ initialData }: { initialData?: any }) => {
           <CircularProgress size={30} sx={{ color: blue[500] }} />
         </Box>
       ) : (
-        <Grid container spacing={3}>
-          {shops?.map((shop: any) => (
-            <Grid item xs={3} key={shop.id}>
-              <ShopCard shop={shop} />
-            </Grid>
-          ))}
-        </Grid>
+        <Box>
+          <Box>
+            <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+              お店一覧
+            </Typography>
+          </Box>
+          <Grid container spacing={3} mt={1}>
+            {shops?.map((shop: any) => (
+              <Grid item xs={3} key={shop.id}>
+                <ShopCard shop={shop} />
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
       )}
       {/* empty */}
       {shops?.length === 0 && !isLoading && (

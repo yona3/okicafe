@@ -5,7 +5,6 @@ export const ShopOpen = ({ shop }: { shop: any }) => {
     <Box
       sx={{
         display: "flex",
-        alignItems: "center",
         justifyContent: "center",
       }}
     >

@@ -9,12 +9,12 @@ export const SearchBar = () => {
   return (
     <Container
       component="main"
+      maxWidth="md"
       sx={{
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
         height: "30vh",
-        width: "100%",
       }}
     >
       <Box

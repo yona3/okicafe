@@ -14,8 +14,10 @@ export const ShopImage = ({ shop }: { shop: any }) => {
         src={shop.photo.pc.l}
         alt="Logo"
         style={{
-          width: "600px",
-          borderRadius: "8px",
+          width: "100%",
+          height: "500px",
+          objectFit: "cover",
+          borderRadius: "4px",
         }}
       />
     </Box>

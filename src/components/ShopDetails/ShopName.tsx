@@ -9,7 +9,9 @@ export const ShopName = ({ shop }: { shop: any }) => {
         alignItems: "center",
       }}
     >
-      <Typography variant="h3">{shop.name}</Typography>
+      <Typography variant="h3" sx={{ fontSize: 32, fontWeight: "bold" }}>
+        {shop.name}
+      </Typography>
     </Box>
   );
 };

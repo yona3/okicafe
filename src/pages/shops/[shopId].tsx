@@ -1,7 +1,6 @@
 import { ShopDetails } from "@/components/ShopDetails";
 import { Layout } from "@/components/common/Layout";
 import Head from "next/head";
-import { useRouter } from "next/router";
 
 export default function Home() {
   return (

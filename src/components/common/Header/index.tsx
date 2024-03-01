@@ -24,13 +24,14 @@ export default function Header() {
                 display: "flex",
                 alignItems: "center",
                 textDecoration: "none",
+                color: "inherit",
               }}
             >
               <Image src="/Logo.png" alt="Logo" width={60} height={60} />
               <Typography
                 variant="h6"
-                component="div"
-                sx={{ display: "inline-block", color: "text.primary" }}
+                component="h1"
+                sx={{ display: "inline-block" }}
               >
                 Okicafe
               </Typography>
