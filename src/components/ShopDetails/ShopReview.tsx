@@ -36,7 +36,7 @@ const data = [
 
 export default function ShopReview() {
   return (
-    <List sx={{ width: "100%", maxWidth: 2500, bgcolor: "background.paper" }}>
+    <List sx={{ width: "100%", maxWidth: 1500, bgcolor: "background.paper" }}>
       {data.map((item, index) => (
         <React.Fragment key={index}>
           <ListItem alignItems="flex-start">

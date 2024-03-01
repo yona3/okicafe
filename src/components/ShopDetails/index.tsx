@@ -22,13 +22,7 @@ export const ShopDetails = () => {
   return (
     <Box sx={{ width: "100%", color: "#424242" }}>
       {shop && (
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
+        <Box>
           <ShopImage shop={shop} />
           <Box sx={{ marginBottom: 5 }} />
 
@@ -49,11 +43,11 @@ export const ShopDetails = () => {
           <Box sx={{ marginBottom: 5 }} />
 
           <ShopLink shop={shop} />
-
-          <ShopReview />
-          <Box sx={{ marginBottom: 3 }} />
+          <Box sx={{ marginBottom: 8 }} />
 
           <ShopAddReview />
+          <ShopReview />
+
           <></>
         </Box>
       )}
