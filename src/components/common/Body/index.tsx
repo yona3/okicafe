@@ -14,7 +14,7 @@ export const Body = ({ children }: PageLayoutProps) => {
         flexDirection: "column",
         flexWrap: "nowrap",
         p: 1,
-        padding: "1em 50px",
+        padding: "1em 50px 64px",
         margin: 0,
         bgcolor: "background.paper",
         borderRadius: 1,

@@ -11,8 +11,8 @@ export const LoginButton: FC = () => {
 
   return (
     <>
-      {user ? (
-        <IconButton sx={{ width: "62px" }}>
+      {user && (
+        <IconButton sx={{ width: "62px", color: "inherit" }}>
           <Link
             href={`/${user.id}`}
             style={{
@@ -20,7 +20,7 @@ export const LoginButton: FC = () => {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              color: grey[800],
+              color: "inherit",
               width: "100%",
               height: "100%",
             }}
@@ -28,7 +28,8 @@ export const LoginButton: FC = () => {
             <PersonIcon />
           </Link>
         </IconButton>
-      ) : (
+      )}
+      {user === null && (
         <Button color="inherit" onClick={() => signIn()}>
           ログイン
         </Button>
